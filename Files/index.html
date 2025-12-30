@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PortFolio</title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            background-size: cover;
+            background: linear-gradient(135deg, #1f1c2c, #928dab);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+        }
+
+        /* updated navbar styles */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(6px);
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            padding: 12px 30px;
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* horizontally center nav */
+        }
+
+        .menu {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            padding: 0;
+            margin: 0;
+            align-items: center;
+        }
+
+        /* replaced unused .menu li p rules with .menu a for links */
+        .menu a {
+            display: inline-block;
+            margin: 0;
+            padding: 8px 12px;
+            color: #000;               /* make text black */
+            text-decoration: none;     /* remove underline */
+            text-transform: uppercase;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .menu a:hover {
+            background: rgba(0,0,0,0.04);
+        }
+
+        .menu a:focus {
+            outline: 2px solid rgba(0,0,0,0.12);
+            outline-offset: 2px;
+        }
+        .intro {
+            text-align: center;
+            font-size: 20px;
+            margin-top: 5px;
+            font-weight: 300;
+            text-transform: uppercase;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 5px;
+        }
+        /* logos: remove bullets and lay images out horizontally with uniform boxes */
+        .logos {
+            text-align: center;
+            margin: 12px 0;
+        }
+        .logos ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+        .logos li {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* fixed square box so all images share same ratio; preserve image aspect with object-fit */
+        .logos img {
+            width: 64px;
+            height: 64px;
+            object-fit: contain;
+            display: block;
+        }
+        .welcome {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 300;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        /* hero wrapper: transparent background and subtle border around intro..welcome */
+        .hero {
+            background: rgba(255,0.6); /* semi-transparent */
+            border: 2px solid rgba(0,0,0,0.08);
+            padding: 24px;
+            margin: 24px auto;
+            max-width: 720px;
+            border-radius: 10px;
+            backdrop-filter: blur(4px);
+        }
+        .mypro {
+            text-align: center;
+            padding-top: 5px;
+            margin-top: 5px;
+        }
+        #projects {
+            background: rgba(255,0.6); /* semi-transparent */
+            border: 2px solid rgba(0,0,0,0.08);
+            padding: 10px;
+            margin: 10px auto;
+            max-width: 720px;
+            border-radius: 10px;
+            backdrop-filter: blur(4px);
+        }
+        #about {
+             background: rgba(255,0.6); /* semi-transparent */
+            border: 2px solid rgba(0,0,0,0.08);
+            padding: 10px;
+            margin: 10px auto;
+            max-width: 720px;
+            border-radius: 10px;
+            backdrop-filter: blur(4px);
+        }
+        .one {
+            text-align: center;
+            text-decoration: underline;
+            font-weight: 500;
+            font-size: large;
+        }
+        .details , .two {
+            text-align: center;
+            text-transform: capitalize;
+        }
+        .personal {
+            text-align: center;
+        }
+        .skills:hover {
+            color: blue;
+            
+        }
+        .skills {
+            list-style: none;
+            text-transform: capitalize;
+            padding: 0;
+            margin: 8px auto; /* center the list horizontally */
+            display: inline-block; /* shrink to content so it's centered by parent */
+            text-align: left; /* keep list items left-aligned within the centered block */
+        }
+        .skills li {
+            margin: 6px 0; /* small vertical spacing between items */
+        }
+        /* prevent sticky navbar from covering target sections */
+        section {
+            scroll-margin-top: 80px;
+        }
+        #contact{
+            text-align: center;
+            background: rgba(255,0.6); /* semi-transparent */
+            border: 2px solid rgba(0,0,0,0.08);
+            padding: 10px;
+            margin: 10px auto;
+            max-width: 720px;
+            border-radius: 10px;
+            backdrop-filter: blur(4px);
+        }
+        .cont {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .cont p {
+            margin: 0;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 720px;
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+        .cont input {
+            width: 320px;
+            max-width: 90%;
+            padding: 8px 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(0,0,0,0.12);
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color .15s ease, box-shadow .15s ease, transform .08s ease;
+            font-family: inherit;
+        }
+        .cont textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .cont input::placeholder,
+        .cont textarea::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+        .cont input:focus,
+        .cont textarea:focus {
+            border-color: rgba(255,255,255,0.35);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.28);
+        }
+        .cont button {
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: none;
+            background: linear-gradient(90deg, rgba(0,0,0,0.7), rgba(0,0,0,0.5));
+            color: #fff;
+            font-weight: 600;
+            transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+        }
+        .cont button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 26px rgba(0,0,0,0.35);
+        }
+        button:hover {
+            color: blue;
+            background-color: black;
+        }
+        /* contact form container and fields */
+        #contactForm {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        #contactForm label {
+            width: 100%;
+            max-width: 720px;
+            text-align: center;
+            font-family: inherit;
+        }
+        #contactForm input,
+        #contactForm textarea {
+            width: 560px;
+            max-width: 90%;
+            background: rgba(255,255,255,0.02); /* subtle translucent */
+            border: 1px solid rgba(255,255,255,0.12);
+            color: #fff;
+            box-shadow: none;
+            -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px);
+            font-family: inherit;
+        }
+        #contactForm input::placeholder,
+        #contactForm textarea::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+        #successMsg {
+            display: none;
+            opacity: 0;
+            transition: opacity .28s ease;
+            color: #b7f5c7;
+            background: rgba(0,0,0,0.12);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-top: 6px;
+        }
+        .success {
+        display: none;
+        color: green;
+        margin-top: 10px;
+        font-weight: 500;
+        }
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <section>
+            <ul class="menu">
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#projects">PROJECTS</a></li>
+                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#contact">CONTACT</a></li>
+            </ul>
+        </section>
+    </nav>
+    <section class="hero" id="home">
+        <p class="intro">Hello My Name is,</p>
+        <h2>KARAN VANKAR</h2>
+        <div class="logos">
+            <ul aria-label="skills logos">
+                <li><img src="https://webdevmonk.com/main/html.png" alt="HTML logo"></li>
+                <li><img src="https://webdevmonk.com/main/css.png" alt="CSS logo"></li>
+                <li><img src="https://webdevmonk.com/main/JS.png" alt="JavaScript logo"></li>
+            </ul>
+        </div>
+        <p class="welcome">Frontend developer focused on clean ui and smooth user experience.</p>
+    </section>
+    <section id="projects">
+        <h2 class="mypro">MY PROJECTS</h2>
+        <p class="one">E-commerce website:-</p>
+        <p class="details">1.Built User interface in E-commerce Website college project using Html,Css,and JavaScript.</p>
+        <p class="two">2.Built personal portfolio using Html,Css,Javascript.</p>
+    </section>
+
+    <section id="about">
+        <h2 class="me">About Me:-</h2>
+        <div class="personal"><p>Name : KARAN VANKAR</p>
+            <p>Email : vankarkaran062@gmail.com</p>
+            <a href="https://github.com/karanvankar3224/portfolio.git" target="-blank" rel="noopener noreferrer">Github : https://github.com/karanvankar3224/portfolio.git</a>
+            <h2 class="me">Education:-</h2>
+            <p>10th : Valan Highschool valan.(2019)</p>
+            <p>Diploma : AY Dadabhai Technical Institute Kosamba.(2019-2022)</p>
+            <p>Degree : Parul University Vadodara.(2023-2026)</p>
+            <h2 class="me">skills:-</h2>
+            <ul class="skills">
+                <li>Html</li>
+                <li>css</li>
+                <li>javascript</li>
+                <li>python</li>
+            </ul>
+        </div>
+    </section>
+    <section id="contact">
+        <h2>Contact Me:-</h2>
+        <div class="cont">
+        <form id="contactForm">
+  
+  <label for="email">Email</label>
+  <input 
+    type="email" 
+    id="email" 
+    name="email"
+    placeholder="Enter your email"
+    required
+  >
+
+  <label for="message">Message</label>
+  <textarea 
+    id="message" 
+    name="message"
+    placeholder="Type your message"
+    rows="5"
+    required
+  ></textarea>
+
+  <button type="submit">Send</button>
+
+    <p id="successMsg" class="success" role="status" aria-live="polite" aria-hidden="true">Message sent successfully ✅</p>
+</form>
+
+    </div>
+    </section>
+    <script>
+        (function(){
+            const form = document.getElementById('contactForm');
+            const success = document.getElementById('successMsg');
+            if(!form || !success) return;
+
+            form.addEventListener('submit', function(e){
+                e.preventDefault();
+                // show success message
+                success.classList.add('show');
+                success.setAttribute('aria-hidden','false');
+
+                // reset form fields
+                form.reset();
+
+                // hide after 3s
+                setTimeout(()=>{
+                    success.classList.remove('show');
+                    success.setAttribute('aria-hidden','true');
+                }, 3000);
+            });
+        })();
+    </script>
+</body>
+</html>
